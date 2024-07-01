@@ -1,4 +1,0 @@
-# **C** References {#all-references-appendix .unnumbered}
-
-::: #refs
-:::

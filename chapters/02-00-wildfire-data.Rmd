@@ -1,9 +1,0 @@
-# (PART\*) Wildfire Data {.unnumbered .unlisted}
-
-# **Wildfire Data** {-}
-
----
-
-This unit provides guidance and code for working with different types of wildfire-related data in climate change and health research. 
-
-_Please note that the CHORDS Toolkit is a work in progress. This unit is currently in development._

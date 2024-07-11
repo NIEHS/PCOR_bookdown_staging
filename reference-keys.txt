@@ -68,7 +68,11 @@ objectives-1
 nasa-earthdata-account
 register-or-log-in
 approved-applications
-prerequisite-files
+generate-prerequisite-files
+netrc
+urs_cookies
+dodsrc
+download-data
 chapter-link-to-census
 introduction-6
 motivation-2
@@ -92,5 +96,5 @@ tutorial-1
 fhir-pit-step-0
 fhir-pit-step-1
 fhir-pit-step-2
-considerations-1
+fhir-pit-considerations
 concluding-remarks-1

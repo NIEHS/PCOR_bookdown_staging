@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6 Linkage to Census Units | The CHORDS Toolkit for Health and Geospatial Exposures Research</title>
   <meta name="description" content="The CHORDS Toolkit provides guides, tools, and example code to support climate change and human health research." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 Linkage to Census Units | The CHORDS Toolkit for Health and Geospatial Exposures Research" />
   <meta property="og:type" content="book" />
@@ -126,7 +126,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -204,6 +203,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.1" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#introduction-5"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#nasa-earthdata-account"><i class="fa fa-check"></i><b>5.2</b> NASA EarthData Account</a></li>
+<li class="chapter" data-level="5.3" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#generate-prerequisite-files"><i class="fa fa-check"></i><b>5.3</b> Generate Prerequisite Files</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#download-data"><i class="fa fa-check"></i><b>5.4</b> Download Data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="health-data-integration.html"><a href="health-data-integration.html"><i class="fa fa-check"></i><strong>Health Data Integration</strong></a></li>
 <li class="chapter" data-level="6" data-path="chapter-link-to-census.html"><a href="chapter-link-to-census.html"><i class="fa fa-check"></i><b>6</b> Linkage to Census Units</a>
@@ -216,7 +217,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.1" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#introduction-7"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#tutorial-1"><i class="fa fa-check"></i><b>7.2</b> Tutorial</a></li>
-<li class="chapter" data-level="7.3" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#considerations-1"><i class="fa fa-check"></i><b>7.3</b> Considerations</a></li>
+<li class="chapter" data-level="7.3" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#fhir-pit-considerations"><i class="fa fa-check"></i><b>7.3</b> Considerations</a></li>
 <li class="chapter" data-level="7.4" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#concluding-remarks-1"><i class="fa fa-check"></i><b>7.4</b> Concluding Remarks</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="case-studies.html"><a href="case-studies.html"><i class="fa fa-check"></i><strong>Case Studies</strong></a></li>
@@ -263,13 +264,16 @@ target="blank">Published with bookdown</a></li>
 <p>This tutorial provides example code in <code>R</code>:</p>
 <ol style="list-style-type: decimal">
 <li><p>To link geocoded addresses (i.e., geographic coordinates) to the specific US Census geographic units (e.g., tract) in which they are located.</p></li>
-<li><p>To link data from the Agency for Healthcare Research and Quality (AHRQ) Social Determinants of Health Database <span class="citation">(<a href="#ref-ahrq-sdoh-database">Agency for Healthcare Research and Quality 2022</a>)</span> to those geocoded addresses.</p></li>
+<li><p>To link data from the Agency for Healthcare Research and Quality (AHRQ) Social Determinants of Health Database <span class="citation">(<a href="#ref-ahrq-sdoh-database">17</a>)</span> to those geocoded addresses.</p></li>
 </ol>
 <div id="motivation-2" class="section level3 hasAnchor" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Motivation<a href="chapter-link-to-census.html#motivation-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Linking geocoded addresses to US Census geographic units is a common step in environmental health data integration workflows. First, using geographic information systems (GIS) software, the geocoded addresses are mapped to the specific Census geographic units (e.g., Census tracts) in which they are located. Second, the Census geographic unit identifying code (or, <a href="https://www.census.gov/programs-surveys/geography/guidance/geo-identifiers.html">geoID</a>) is matched to each geocoded address. The result is a table of geocoded addresses and their corresponding Census geoIDs.</p>
 <p>The Census geoIDs can then serve as the basis for linking additional data to each geocoded address. Many types of data with importance for environmental health applications are available by Census geoID. Specifically, the Census collects and provides data by Census geoID for various social determinants of health (SDOH). Such Census SDOH data describe poverty, race/ethnicity, language, housing, and other socioeconomic characteristics. Increasingly, other data providers (e.g., other government agencies, research institutions, community science groups) are making their data available by Census geoID to help facilitate linkages with SDOH data. Such data cover various environment, climate, health, and built environment characteristics.</p>
-<p>Example environmental health data sources readily available by Census geoID from US federal agencies include the following:</p>
+<p>The following table lists example environmental health data sources readily available by Census geoID from US federal agencies.</p>
+<figcaption>
+Example Environmental Health Data Sources
+</figcaption>
 <table>
 <colgroup>
 <col width="31%" />
@@ -311,14 +315,17 @@ target="blank">Published with bookdown</a></li>
 </div>
 <p><a href="https://www.census.gov/programs-surveys/geography/guidance/geo-areas/zctas.html">ZIP Code Tabulation Areas (ZCTAs)</a>, which represent the geographic areas used by the US Postal Service for ZIP codes, are another common boundary used in environmental health workflows. ZCTAs have no spatial relationship with block groups, tracts, counties, or states: that is, ZCTAs can cross or overlap those other geographic boundaries. Like other Census geographic boundaries, ZCTAs vary in spatial resolution and shape across the US. The spatial scale of ZCTAs is, on average, finer than counties but coarser than tracts.</p>
 <p>The following figure illustrates the variable spatial scale and shape of each type of geographic boundary:</p>
-<center>
-<div class="float">
-<img src="images/link_to_census/geography_durham_co.png" alt="Census geographic units in Durham County, North Carolina, in 2010" />
-<div class="figcaption">Census geographic units in Durham County, North Carolina, in 2010</div>
+<div class="figure">
+<img src="images/link_to_census/geography_durham_co.png" style="width:100%">
+<figcaption>
+Census Geographic Units in Durham County, North Carolina, in 2010
+</figcaption>
 </div>
-</center>
 <p>The Census assigns a unique identifying code, or <a href="https://www.census.gov/programs-surveys/geography/guidance/geo-identifiers.html">geoID</a>, to each geographic unit. This Census geoID is also referred to as a FIPS (Federal Information Processing Series) code.</p>
-<p>The following table describes common types of Census geographic units and the structure of their geoIDs:</p>
+<p>The following table describes common types of Census geographic units and the structure of their geoIDs.</p>
+<figcaption>
+Common Census Geographic Units in the United States
+</figcaption>
 <table>
 <colgroup>
 <col width="20%" />
@@ -331,7 +338,7 @@ target="blank">Published with bookdown</a></li>
 <tr>
 <th>Geographic Unit</th>
 <th>Total Units<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></th>
-<th>GeoID Desciption and Structure</th>
+<th>GeoID Description and Structure</th>
 <th>Example Unit GeoID</th>
 <th>Example Unit Name</th>
 </tr>
@@ -375,7 +382,7 @@ target="blank">Published with bookdown</a></li>
 <tr>
 <td>Block</td>
 <td>8,132,968</td>
-<td>15-digit code = 2-digit state (S) code + 3 digit county (C) code + 6-digit tract (T) code + 4-digit block (B) code (which contains the block group code as its first digit) = SSCCCTTTTTTGBBB</td>
+<td>15-digit code = 2-digit state (S) code + 3 digit county (C) code + 6-digit tract (T) code + 4-digit block (B) code (which contains the block group code as its first digit) = SSCCCTTTTTTBBBB</td>
 <td>090075601001004</td>
 <td>Block 1004 in Tract 560100 in Middlesex County, CT</td>
 </tr>
@@ -410,7 +417,7 @@ target="blank">Published with bookdown</a></li>
 <h2><span class="header-section-number">6.2</span> Tutorial<a href="chapter-link-to-census.html#tutorial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="link-to-census-step-0" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Install R Packages<a href="chapter-link-to-census.html#link-to-census-step-0" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>This tutorial uses the <code>R</code> packages <code>sf</code> <span class="citation">(<a href="#ref-r-sf-1">Pebesma 2018</a>; <a href="#ref-r-sf-2">Pebesma and Bivand 2023</a>)</span>, <code>tidyverse</code> <span class="citation">(<a href="#ref-r-tidyverse">Wickham et al. 2019</a>)</span>, <code>tigris</code> <span class="citation">(<a href="#ref-r-tigris">Walker 2023b</a>)</span>, and <code>tmap</code> <span class="citation">(<a href="#ref-r-tmap">Tennekes 2018</a>)</span>. The following code installs and loads these packages:</p>
+<p>This tutorial uses the <code>R</code> packages <code>sf</code> <span class="citation">(<a href="#ref-r-sf-1">1</a>,<a href="#ref-r-sf-2">8</a>)</span>, <code>tidyverse</code> <span class="citation">(<a href="#ref-r-tidyverse">18</a>)</span>, <code>tigris</code> <span class="citation">(<a href="#ref-r-tigris">19</a>)</span>, and <code>tmap</code> <span class="citation">(<a href="#ref-r-tmap">20</a>)</span>. The following code installs and loads these packages:</p>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="chapter-link-to-census.html#cb134-1" tabindex="-1"></a><span class="co"># install required packages</span></span>
 <span id="cb134-2"><a href="chapter-link-to-census.html#cb134-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;sf&quot;</span>, <span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;tigris&quot;</span>, <span class="st">&quot;tmap&quot;</span>))</span>
 <span id="cb134-3"><a href="chapter-link-to-census.html#cb134-3" tabindex="-1"></a></span>
@@ -470,7 +477,7 @@ target="blank">Published with bookdown</a></li>
 <li><p>General documentation for data provider</p></li>
 </ul>
 </div>
-<p>There are multiple formats available in <code>R</code> for <a href="https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/understand-epsg-wkt-and-other-crs-definition-file-types/">specifying the CRS</a>: <code>proj4</code>, well known text (<code>wkt</code>), and European Petroleum Survey Group (<code>EPSG</code>) format <span class="citation">(<a href="#ref-wasser-lesson5">Wasser 2018</a>)</span>. Here, we will specify the <code>WGS84</code> CRS using the <code>EPSG</code> format, which is a 4-digit numeric identifying code. We can look up the <code>EPSG</code> code for <code>WGS84</code> by searching a <a href="https://spatialreference.org/ref/epsg/">spatial reference catalog</a>. There, we find that the <code>EPSG</code> code is<code>4326</code>.</p>
+<p>There are multiple formats available in <code>R</code> for <a href="https://www.earthdatascience.org/courses/earth-analytics/spatial-data-r/understand-epsg-wkt-and-other-crs-definition-file-types/">specifying the CRS</a>: <code>proj4</code>, well known text (<code>wkt</code>), and European Petroleum Survey Group (<code>EPSG</code>) format <span class="citation">(<a href="#ref-wasser-lesson5">21</a>)</span>. Here, we will specify the <code>WGS84</code> CRS using the <code>EPSG</code> format, which is a 4-digit numeric identifying code. We can look up the <code>EPSG</code> code for <code>WGS84</code> by searching a <a href="https://spatialreference.org/ref/epsg/">spatial reference catalog</a>. There, we find that the <code>EPSG</code> code is<code>4326</code>.</p>
 <p>The following code transforms the table of city hall locations to a simple features object:</p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="chapter-link-to-census.html#cb137-1" tabindex="-1"></a><span class="co"># transform table to simple features</span></span>
 <span id="cb137-2"><a href="chapter-link-to-census.html#cb137-2" tabindex="-1"></a>geo_addresses_sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_as_sf</span>(geo_addresses_tbl,</span>
@@ -541,15 +548,15 @@ target="blank">Published with bookdown</a></li>
 <span id="cb141-4"><a href="chapter-link-to-census.html#cb141-4" tabindex="-1"></a></span>
 <span id="cb141-5"><a href="chapter-link-to-census.html#cb141-5" tabindex="-1"></a><span class="co"># view the map</span></span>
 <span id="cb141-6"><a href="chapter-link-to-census.html#cb141-6" tabindex="-1"></a><span class="fu">print</span>(nc_tracts_2010_map)</span></code></pre></div>
-<center>
-<div class="float">
-<img src="images/link_to_census/nc_tracts_2010_map.png" alt="Census tracts in North Carolina in 2010" />
-<div class="figcaption">Census tracts in North Carolina in 2010</div>
+<div class="figure">
+<img src="images/link_to_census/nc_tracts_2010_map.png" style="width:100%">
+<figcaption>
+Census Tracts in North Carolina in 2010
+</figcaption>
 </div>
-</center>
-<p>Other <a href="https://github.com/walkerke/tigris">types and vintages of Census geographic boundaries</a> are available through <code>tigris</code> and the related <code>tidycensus</code> package <span class="citation">(<a href="#ref-r-tidycensus">Walker and Herman 2023</a>)</span>. In most cases, these boundaries are available for recent years (i.e., 1990 to present) and are accessed by state (i.e., users can download geographic boundaries for one state at a time, in separate files).</p>
-<p>Census geographic boundaries are also available to download by state for years 2007 to present via the Census TIGER/Lines website <span class="citation">(<a href="#ref-census-tiger-line-shapefiles">US Census Bureau 2024</a>)</span>.</p>
-<p>Historic Census geographic boundaries (i.e., 1910 to present) are available through <a href="https://www.nhgis.org">IPUMS NHGIS</a> <span class="citation">(<a href="#ref-ipums-nhgis">University of Minnesota, n.d.</a>)</span>. Additionally, IPUMS NHGIS provides many boundaries at the national scale (i.e., such that users can download geographic boundaries for the entire US in a single file). Here is an <a href="https://walker-data.com/census-r/other-census-and-government-data-resources.html#mapping-historical-geographies-of-new-york-city-with-nhgis">example workflow</a> for accessing historic Census geographic boundaries via IPUMS NHGIS in <code>R</code> <span class="citation">(<a href="#ref-walker2023analyzing">Walker 2023a</a>)</span>.</p>
+<p>Other <a href="https://github.com/walkerke/tigris">types and vintages of Census geographic boundaries</a> are available through <code>tigris</code> and the related <code>tidycensus</code> package <span class="citation">(<a href="#ref-r-tidycensus">22</a>)</span>. In most cases, these boundaries are available for recent years (i.e., 1990 to present) and are accessed by state (i.e., users can download geographic boundaries for one state at a time, in separate files).</p>
+<p>Census geographic boundaries are also available to download by state for years 2007 to present via the Census TIGER/Lines website <span class="citation">(<a href="#ref-census-tiger-line-shapefiles">23</a>)</span>.</p>
+<p>Historic Census geographic boundaries (i.e., 1910 to present) are available through <a href="https://www.nhgis.org">IPUMS NHGIS</a> <span class="citation">(<a href="#ref-ipums-nhgis">24</a>)</span>. Additionally, IPUMS NHGIS provides many boundaries at the national scale (i.e., such that users can download geographic boundaries for the entire US in a single file). Here is an <a href="https://walker-data.com/census-r/other-census-and-government-data-resources.html#mapping-historical-geographies-of-new-york-city-with-nhgis">example workflow</a> for accessing historic Census geographic boundaries via IPUMS NHGIS in <code>R</code> <span class="citation">(<a href="#ref-walker2023analyzing">25</a>)</span>.</p>
 </div>
 <div id="link-to-census-step-3" class="section level3 hasAnchor" number="6.2.4">
 <h3><span class="header-section-number">6.2.4</span> Link Geocoded Addresses to Census Geographic Boundaries<a href="chapter-link-to-census.html#link-to-census-step-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -570,12 +577,12 @@ target="blank">Published with bookdown</a></li>
 <span id="cb142-14"><a href="chapter-link-to-census.html#cb142-14" tabindex="-1"></a></span>
 <span id="cb142-15"><a href="chapter-link-to-census.html#cb142-15" tabindex="-1"></a><span class="co"># view the map</span></span>
 <span id="cb142-16"><a href="chapter-link-to-census.html#cb142-16" tabindex="-1"></a><span class="fu">print</span>(linkage_map)</span></code></pre></div>
-<center>
-<div class="float">
-<img src="images/link_to_census/linkage_map.png" alt="Census tracts in North Carolina in 2010 (grey) with sample geocoded addresses (red)" />
-<div class="figcaption">Census tracts in North Carolina in 2010 (grey) with sample geocoded addresses (red)</div>
+<div class="figure">
+<img src="images/link_to_census/linkage_map.png" style="width:100%">
+<figcaption>
+Census Tracts in North Carolina in 2010 (Grey) with Sample Geocoded Addresses (Red)
+</figcaption>
 </div>
-</center>
 <p>Now that the geocoded addresses and Census tracts are in the same CRS, we can link each geocoded address to the Census tract that contains it using a spatial join. The following code produces a table of geocoded addresses linked to Census tract geoIDs:</p>
 <div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="chapter-link-to-census.html#cb143-1" tabindex="-1"></a><span class="co"># link geocoded addresses to the Census tracts that contain them</span></span>
 <span id="cb143-2"><a href="chapter-link-to-census.html#cb143-2" tabindex="-1"></a>geo_addresses_linkage_sf <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_join</span>(geo_addresses_sf,</span>
@@ -606,28 +613,30 @@ target="blank">Published with bookdown</a></li>
 <h3><span class="header-section-number">6.2.5</span> Link AHRQ SDOH Data to Geocoded Addresses<a href="chapter-link-to-census.html#link-to-census-step-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The fourth step is to link the AHRQ SDOH data to each geocoded address based on the Census geoID.</p>
 <p>To start, we’ll need to prepare the AHRQ SDOH data for Census tracts. This data is available to download as an Excel (XLSX) spreadsheet on the <a href="https://www.ahrq.gov/sdoh/data-analytics/sdoh-data.html">AHRQ SDOH website</a> as shown in this screenshot:</p>
-<center>
-<div class="float">
-<img src="images/link_to_census/screenshot_sdoh_table.png" alt="Screenshot of AHRQ SDOH Website (September 13, 2023)" />
-<div class="figcaption">Screenshot of AHRQ SDOH Website (September 13, 2023)</div>
+<div class="figure">
+<img src="images/link_to_census/screenshot_sdoh_table.png" style="width:100%">
+<figcaption>
+Screenshot of AHRQ SDOH Website (September 13, 2023)
+</figcaption>
 </div>
-</center>
 <p>Before linking, we’ll need to check the vintage of Census tracts used in the AHRQ SDOH data. To do this, we can review the AHRQ SDOH <a href="https://www.ahrq.gov/sites/default/files/wysiwyg/sdoh/SDOH-Data-Sources-Documentation-v1-Final.pdf">Data Source Documentation</a> (accessed through the link shown in the website screenshot above). There we find the following information:</p>
 <blockquote>
 <p>The SDOH Database 2009 file has census tracts based on the 2000 census tract boundaries. The SDOH Database for 2010-2019 SDOH files uses 2010 census tract boundaries, and the 2020 file uses 2020 census tract boundaries.</p>
 </blockquote>
 <p>Based on this information, we can use the geoIDs for year-2010 vintage Census tracts we prepared for the geocoded addresses in the previous <a href="chapter-link-to-census.html#link-to-census-step-3">step</a> to link the AHRQ SDOH data for years 2010-2019. If we would instead prefer to link the AHRQ SDOH data for year 2009 or 2020, we would first need to repeat the previous <a href="chapter-link-to-census.html#link-to-census-step-2">steps</a> to link the geoIDs for year-2000 vintage or year-2020 vintage Census tracts, respectively, to the geocoded addresses.</p>
 <p>For this example, we will link the AHRQ SDOH data for Census tracts in 2010 to our sample geocoded addresses on the basis of the year-2010 Census tract geoID. The SDOH AHRQ data for Census tracts in 2010 is provided as an Excel file. Because Excel files can contain multiple sheets, we’ll need to first download and open the Excel file to understand which sheet(s) to read into <code>R</code>:</p>
-<center>
-<div class="float">
-<img src="images/link_to_census/screenshot_sdoh_xls_1.png" alt="Screenshot of first sheet in Excel file (September 14, 2023)" />
-<div class="figcaption">Screenshot of first sheet in Excel file (September 14, 2023)</div>
+<div class="figure">
+<img src="images/link_to_census/screenshot_sdoh_xls_1.png" style="width:100%">
+<figcaption>
+Screenshot of First Sheet in Excel File (September 14, 2023)
+</figcaption>
 </div>
-<div class="float">
-<img src="images/link_to_census/screenshot_sdoh_xls_2.png" alt="Screenshot of second sheet in Excel file (September 14, 2023)" />
-<div class="figcaption">Screenshot of second sheet in Excel file (September 14, 2023)</div>
+<div class="figure">
+<img src="images/link_to_census/screenshot_sdoh_xls_2.png" style="width:100%">
+<figcaption>
+Screenshot of Second Sheet in Excel File (September 14, 2023)
+</figcaption>
 </div>
-</center>
 <p>We find that the Excel file has two sheets: <code>Layout</code> and <code>Data</code>. The <code>Layout</code> sheet contains the data dictionary. The <code>Data</code> sheet contains &gt;300 columns of SDOH data by geoID for the &gt;70,000 Census tracts in the US in 2010.</p>
 <p>The following code downloads the Excel file and reads its <code>Data</code> sheet into a table in <code>R</code>:</p>
 <div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="chapter-link-to-census.html#cb145-1" tabindex="-1"></a><span class="co"># download Excel file using the URL provided in the screenshot above</span></span>
@@ -707,39 +716,39 @@ target="blank">Published with bookdown</a></li>
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-ahrq-sdoh-database" class="csl-entry">
-Agency for Healthcare Research and Quality. 2022. <em>Social Determinants of Health Database</em>. Database. <a href="https://www.ahrq.gov/sdoh/data-analytics/sdoh-data.html">https://www.ahrq.gov/sdoh/data-analytics/sdoh-data.html</a>.
-</div>
+<div id="refs" class="references csl-bib-body">
 <div id="ref-r-sf-1" class="csl-entry">
-Pebesma, Edzer. 2018. <span>“<span class="nocase">Simple Features for <span>R</span>: Standardized Support for Spatial Vector Data</span>.”</span> <em><span>The R Journal</span></em> 10 (1): 439–46. <a href="https://doi.org/10.32614/RJ-2018-009">https://doi.org/10.32614/RJ-2018-009</a>.
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Pebesma, Edzer. 2018. <span>“<span class="nocase">Simple Features for <span>R</span>: Standardized Support for Spatial Vector Data</span>.”</span> <em><span>The R Journal</span></em> 10 (1): 439–46. <a href="https://doi.org/10.32614/RJ-2018-009">https://doi.org/10.32614/RJ-2018-009</a></div>
 </div>
 <div id="ref-r-sf-2" class="csl-entry">
-Pebesma, Edzer, and Roger Bivand. 2023. <em>Spatial Data Science: With Applications in <span>R</span></em>. <span>Chapman and Hall/CRC</span>. <a href="https://doi.org/10.1201/9780429459016">https://doi.org/10.1201/9780429459016</a>.
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Pebesma, Edzer, and Roger Bivand. 2023. <em>Spatial Data Science: With Applications in <span>R</span></em>. <span>Chapman and Hall/CRC</span>. <a href="https://doi.org/10.1201/9780429459016">https://doi.org/10.1201/9780429459016</a></div>
 </div>
-<div id="ref-r-tmap" class="csl-entry">
-Tennekes, Martijn. 2018. <span>“<span class="nocase">tmap</span>: Thematic Maps in <span>R</span>.”</span> <em>Journal of Statistical Software</em> 84 (6): 1–39. <a href="https://doi.org/10.18637/jss.v084.i06">https://doi.org/10.18637/jss.v084.i06</a>.
-</div>
-<div id="ref-ipums-nhgis" class="csl-entry">
-University of Minnesota. n.d. <em><span>IPUMS NHGIS</span></em>. <a href="https://www.nhgis.org">https://www.nhgis.org</a>.
-</div>
-<div id="ref-census-tiger-line-shapefiles" class="csl-entry">
-US Census Bureau. 2024. <em>Census Tiger/Line Shapefiles</em>. <a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html</a>.
-</div>
-<div id="ref-walker2023analyzing" class="csl-entry">
-Walker, Kyle. 2023a. <em>Analyzing <span>US</span> Census Data: Methods, Maps, and Models in <span>R</span></em>. Chapman; Hall/CRC. <a href="https://walker-data.com/census-r/index.html">https://walker-data.com/census-r/index.html</a>.
-</div>
-<div id="ref-r-tigris" class="csl-entry">
-———. 2023b. <em><span class="nocase">tigris</span>: Load Census <span>TIGER/Line</span> Shapefiles</em>. R package version 2.0.3. <a href="https://CRAN.R-project.org/package=tigris">https://CRAN.R-project.org/package=tigris</a>.
-</div>
-<div id="ref-r-tidycensus" class="csl-entry">
-Walker, Kyle, and Matt Herman. 2023. <em><span class="nocase">tidycensus</span>: Load US Census Boundary and Attribute Data as <span class="nocase">’tidyverse’</span> and <span class="nocase">’sf’</span>-Ready Data Frames</em>. R package version 1.4.4. <a href="https://CRAN.R-project.org/package=tidycensus">https://CRAN.R-project.org/package=tidycensus</a>.
-</div>
-<div id="ref-wasser-lesson5" class="csl-entry">
-Wasser, Leah. 2018. <span>“<span class="nocase">Lesson 5. GIS in R: Understand EPSG, WKT and other CRS definition styles</span>.”</span> In <em><span class="nocase">earthlab/earth-analytics-r-course: Earth Analytics Course in the R Programming Language</span></em>. Zenodo. <a href="https://doi.org/10.5281/zenodo.1326873">https://doi.org/10.5281/zenodo.1326873</a>.
+<div id="ref-ahrq-sdoh-database" class="csl-entry">
+<div class="csl-left-margin">17. </div><div class="csl-right-inline">Agency for Healthcare Research and Quality. 2022. <em>Social Determinants of Health Database</em>. Database. <a href="https://www.ahrq.gov/sdoh/data-analytics/sdoh-data.html">https://www.ahrq.gov/sdoh/data-analytics/sdoh-data.html</a></div>
 </div>
 <div id="ref-r-tidyverse" class="csl-entry">
-Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+<div class="csl-left-margin">18. </div><div class="csl-right-inline">Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a></div>
+</div>
+<div id="ref-r-tigris" class="csl-entry">
+<div class="csl-left-margin">19. </div><div class="csl-right-inline">Walker, Kyle. 2023. <em><span class="nocase">tigris</span>: Load Census <span>TIGER/Line</span> Shapefiles</em>. R Package Version 2.0.3. <a href="https://CRAN.R-project.org/package=tigris">https://CRAN.R-project.org/package=tigris</a></div>
+</div>
+<div id="ref-r-tmap" class="csl-entry">
+<div class="csl-left-margin">20. </div><div class="csl-right-inline">Tennekes, Martijn. 2018. <span>“<span class="nocase">tmap</span>: Thematic Maps in <span>R</span>.”</span> <em>Journal of Statistical Software</em> 84 (6): 1–39. <a href="https://doi.org/10.18637/jss.v084.i06">https://doi.org/10.18637/jss.v084.i06</a></div>
+</div>
+<div id="ref-wasser-lesson5" class="csl-entry">
+<div class="csl-left-margin">21. </div><div class="csl-right-inline">Wasser, Leah. 2018. <span>“<span class="nocase">Lesson 5. GIS in R: Understand EPSG, WKT and other CRS definition styles</span>.”</span> In <em><span class="nocase">earthlab/earth-analytics-r-course: Earth Analytics Course in the R Programming Language</span></em>. Zenodo. <a href="https://doi.org/10.5281/zenodo.1326873">https://doi.org/10.5281/zenodo.1326873</a></div>
+</div>
+<div id="ref-r-tidycensus" class="csl-entry">
+<div class="csl-left-margin">22. </div><div class="csl-right-inline">Walker, Kyle, and Matt Herman. 2023. <em><span class="nocase">tidycensus</span>: Load US Census Boundary and Attribute Data as <span class="nocase">’tidyverse’</span> and <span class="nocase">’sf’</span>-Ready Data Frames</em>. R Package Version 1.4.4. <a href="https://CRAN.R-project.org/package=tidycensus">https://CRAN.R-project.org/package=tidycensus</a></div>
+</div>
+<div id="ref-census-tiger-line-shapefiles" class="csl-entry">
+<div class="csl-left-margin">23. </div><div class="csl-right-inline">US Census Bureau. 2024. <em>Census Tiger/Line Shapefiles</em>. <a href="https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html">https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-line-file.html</a></div>
+</div>
+<div id="ref-ipums-nhgis" class="csl-entry">
+<div class="csl-left-margin">24. </div><div class="csl-right-inline">University of Minnesota. n.d. <em><span>IPUMS NHGIS</span></em>. <a href="https://www.nhgis.org">https://www.nhgis.org</a></div>
+</div>
+<div id="ref-walker2023analyzing" class="csl-entry">
+<div class="csl-left-margin">25. </div><div class="csl-right-inline">Walker, Kyle. 2023. <em>Analyzing <span>US</span> Census Data: Methods, Maps, and Models in <span>R</span></em>. Chapman; Hall/CRC. <a href="https://walker-data.com/census-r/index.html">https://walker-data.com/census-r/index.html</a></div>
 </div>
 </div>
 <div class="footnotes">

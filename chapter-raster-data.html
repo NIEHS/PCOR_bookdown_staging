@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 Raster Data | The CHORDS Toolkit for Health and Geospatial Exposures Research</title>
   <meta name="description" content="The CHORDS Toolkit provides guides, tools, and example code to support climate change and human health research." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 Raster Data | The CHORDS Toolkit for Health and Geospatial Exposures Research" />
   <meta property="og:type" content="book" />
@@ -126,7 +126,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -204,6 +203,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.1" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#introduction-5"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#nasa-earthdata-account"><i class="fa fa-check"></i><b>5.2</b> NASA EarthData Account</a></li>
+<li class="chapter" data-level="5.3" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#generate-prerequisite-files"><i class="fa fa-check"></i><b>5.3</b> Generate Prerequisite Files</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#download-data"><i class="fa fa-check"></i><b>5.4</b> Download Data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="health-data-integration.html"><a href="health-data-integration.html"><i class="fa fa-check"></i><strong>Health Data Integration</strong></a></li>
 <li class="chapter" data-level="6" data-path="chapter-link-to-census.html"><a href="chapter-link-to-census.html"><i class="fa fa-check"></i><b>6</b> Linkage to Census Units</a>
@@ -216,7 +217,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.1" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#introduction-7"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#tutorial-1"><i class="fa fa-check"></i><b>7.2</b> Tutorial</a></li>
-<li class="chapter" data-level="7.3" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#considerations-1"><i class="fa fa-check"></i><b>7.3</b> Considerations</a></li>
+<li class="chapter" data-level="7.3" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#fhir-pit-considerations"><i class="fa fa-check"></i><b>7.3</b> Considerations</a></li>
 <li class="chapter" data-level="7.4" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#concluding-remarks-1"><i class="fa fa-check"></i><b>7.4</b> Concluding Remarks</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="case-studies.html"><a href="case-studies.html"><i class="fa fa-check"></i><strong>Case Studies</strong></a></li>
@@ -259,7 +260,7 @@ target="blank">Published with bookdown</a></li>
 </div>
 <div id="introduction-4" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> Introduction<a href="chapter-raster-data.html#introduction-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Air temperature data from the United States National Oceanic and Atmospheric Administration’s (NOAA) North American Regional Reanalysis (NARR) data set will be used to demonstrate using raster (grid) data with the <code>terra</code> package <span class="citation">(<a href="#ref-r-terra">Hijmans 2024</a>)</span>.</p>
+<p>Air temperature data from the United States National Oceanic and Atmospheric Administration’s (NOAA) North American Regional Reanalysis (NARR) data set will be used to demonstrate using raster (grid) data with the <code>terra</code> package <span class="citation">(<a href="#ref-r-terra">9</a>)</span>.</p>
 <p>This tutorial will demonstrate the following steps with raster data in <code>R</code>:</p>
 <ul>
 <li>Downloading data from a URL</li>
@@ -380,7 +381,7 @@ target="blank">Published with bookdown</a></li>
 <h2><span class="header-section-number">4.4</span> Exploratory Analysis<a href="chapter-raster-data.html#exploratory-analysis-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="plot-multiple-1" class="section level3 hasAnchor" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> Plot (Multiple)<a href="chapter-raster-data.html#plot-multiple-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Now that the data sets and coordinate reference systems have been prepared, create a plot with <code>ggplot2::gglot()</code>. Identifying the data sets to be plotted within the <code>tidyterra::geom_spatraster()</code> and <code>tidyterra::geom_spatvector()</code> argument informs the function that the <code>narr</code> and <code>conus_t</code> data sets are <code>SpatRaster</code> and <code>SpatVector</code> objects, respectively <span class="citation">(<a href="#ref-r-tidyterra">Hernangómez 2023</a>)</span>.</p>
+<p>Now that the data sets and coordinate reference systems have been prepared, create a plot with <code>ggplot2::gglot()</code>. Identifying the data sets to be plotted within the <code>tidyterra::geom_spatraster()</code> and <code>tidyterra::geom_spatvector()</code> argument informs the function that the <code>narr</code> and <code>conus_t</code> data sets are <code>SpatRaster</code> and <code>SpatVector</code> objects, respectively <span class="citation">(<a href="#ref-r-tidyterra">10</a>)</span>.</p>
 <p>Only the first layer of the <code>narr</code> data set will be plotted.</p>
 <div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="chapter-raster-data.html#cb98-1" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb98-2"><a href="chapter-raster-data.html#cb98-2" tabindex="-1"></a>  <span class="fu">geom_spatraster</span>(<span class="at">data =</span> narr<span class="sc">$</span>air_20210101) <span class="sc">+</span></span>
@@ -571,12 +572,12 @@ target="blank">Published with bookdown</a></li>
 
 
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-r-tidyterra" class="csl-entry">
-Hernangómez, Diego. 2023. <span>“Using the <span class="nocase">tidyverse</span> with <span class="nocase">terra</span> Objects: The <span class="nocase">tidyterra</span> Package.”</span> <em>Journal of Open Source Software</em> 8 (91): 5751. <a href="https://doi.org/10.21105/joss.05751">https://doi.org/10.21105/joss.05751</a>.
-</div>
+<div id="refs" class="references csl-bib-body">
 <div id="ref-r-terra" class="csl-entry">
-Hijmans, Robert J. 2024. <em><span class="nocase">terra</span>: Spatial Data Analysis</em>. R package version 1.7-71. <a href="https://CRAN.R-project.org/package=terra">https://CRAN.R-project.org/package=terra</a>.
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Hijmans, Robert J. 2024. <em><span class="nocase">terra</span>: Spatial Data Analysis</em>. R Package Version 1.7-71. <a href="https://CRAN.R-project.org/package=terra">https://CRAN.R-project.org/package=terra</a></div>
+</div>
+<div id="ref-r-tidyterra" class="csl-entry">
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">Hernangómez, Diego. 2023. <span>“Using the <span class="nocase">tidyverse</span> with <span class="nocase">terra</span> Objects: The <span class="nocase">tidyterra</span> Package.”</span> <em>Journal of Open Source Software</em> 8 (91): 5751. <a href="https://doi.org/10.21105/joss.05751">https://doi.org/10.21105/joss.05751</a></div>
 </div>
 </div>
             </section>

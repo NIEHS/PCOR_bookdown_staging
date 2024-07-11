@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5 NASA EarthData Download | The CHORDS Toolkit for Health and Geospatial Exposures Research</title>
   <meta name="description" content="The CHORDS Toolkit provides guides, tools, and example code to support climate change and human health research." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5 NASA EarthData Download | The CHORDS Toolkit for Health and Geospatial Exposures Research" />
   <meta property="og:type" content="book" />
@@ -126,7 +126,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -204,6 +203,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.1" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#introduction-5"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#nasa-earthdata-account"><i class="fa fa-check"></i><b>5.2</b> NASA EarthData Account</a></li>
+<li class="chapter" data-level="5.3" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#generate-prerequisite-files"><i class="fa fa-check"></i><b>5.3</b> Generate Prerequisite Files</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#download-data"><i class="fa fa-check"></i><b>5.4</b> Download Data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="health-data-integration.html"><a href="health-data-integration.html"><i class="fa fa-check"></i><strong>Health Data Integration</strong></a></li>
 <li class="chapter" data-level="6" data-path="chapter-link-to-census.html"><a href="chapter-link-to-census.html"><i class="fa fa-check"></i><b>6</b> Linkage to Census Units</a>
@@ -216,7 +217,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.1" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#introduction-7"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#tutorial-1"><i class="fa fa-check"></i><b>7.2</b> Tutorial</a></li>
-<li class="chapter" data-level="7.3" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#considerations-1"><i class="fa fa-check"></i><b>7.3</b> Considerations</a></li>
+<li class="chapter" data-level="7.3" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#fhir-pit-considerations"><i class="fa fa-check"></i><b>7.3</b> Considerations</a></li>
 <li class="chapter" data-level="7.4" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#concluding-remarks-1"><i class="fa fa-check"></i><b>7.4</b> Concluding Remarks</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="case-studies.html"><a href="case-studies.html"><i class="fa fa-check"></i><strong>Case Studies</strong></a></li>
@@ -274,10 +275,10 @@ target="blank">Published with bookdown</a></li>
 <li>Physical Oceanography DAAC (PO.DAAC)</li>
 <li>Socioeconomic Data and Applications Center (SEDAC)</li>
 </ul>
-<p>See <a href="https://www.earthdata.nasa.gov/eosdis/daacs" class="uri">https://www.earthdata.nasa.gov/eosdis/daacs</a> for more information <span class="citation">(<a href="#ref-nasa-eosdis-daac">National Aeronautics and Space Administration (NASA), n.d.-a</a>)</span>.</p>
+<p>See <a href="https://www.earthdata.nasa.gov/eosdis/daacs" class="uri">https://www.earthdata.nasa.gov/eosdis/daacs</a> for more information <span class="citation">(<a href="#ref-nasa-eosdis-daac">14</a>)</span>.</p>
 <p>Many of the NASA EOSDIS data sets are relevant to environmental health research, and accessing the data from within R is important for reproducability and repeatable analyses. Although the data is openly accessible, users are required to register for an EarthData account and/or be logged in if you have an account.</p>
 <div class="note">
-<p>The NASA EarthData Account prerequisite files can be generated directly from the command line or using a text editor (notepad in Windows). See <a href="https://disc.gsfc.nasa.gov/information/howto?title=How%20to%20Generate%20Earthdata%20Prerequisite%20Files">How to Generate Earthdata Prerequisite Files</a> for detailed instructions on creating prerequisite files with both the command line and Python <span class="citation">(<a href="#ref-nasa-generate-prereq">National Aeronautics and Space Administration (NASA), n.d.-b</a>)</span>.</p>
+<p>The NASA EarthData Account prerequisite files can be generated directly from the command line or using a text editor (notepad in Windows). See <a href="https://disc.gsfc.nasa.gov/information/howto?title=How%20to%20Generate%20Earthdata%20Prerequisite%20Files">How to Generate Earthdata Prerequisite Files</a> for detailed instructions on creating prerequisite files with both the command line and Python <span class="citation">(<a href="#ref-nasa-generate-prereq">15</a>)</span>.</p>
 </div>
 </div>
 <div id="objectives-1" class="section level3 hasAnchor" number="5.1.2">
@@ -293,28 +294,36 @@ target="blank">Published with bookdown</a></li>
 <div id="nasa-earthdata-account" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> NASA EarthData Account<a href="chapter-nasa-earthdata.html#nasa-earthdata-account" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="register-or-log-in" class="section level3 hasAnchor" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Register or log in<a href="chapter-nasa-earthdata.html#register-or-log-in" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">5.2.1</span> Register or Log In<a href="chapter-nasa-earthdata.html#register-or-log-in" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Visit <a href="http://urs.earthdata.nasa.gov">https://urs.earthdata.nasa.gov/</a> to register for or log into a NASA EarthData account.</p>
-<div class="float">
-<img src="images/nasa_earthdata/NASA_EarthData_login.png" alt="NASA EarthData Account Landing Page" />
-<div class="figcaption">NASA EarthData Account Landing Page</div>
+<div class="figure">
+<img src="images/nasa_earthdata/NASA_EarthData_login.png" style="width:100%">
+<figcaption>
+NASA EarthData Account Landing Page
+</figcaption>
 </div>
 </div>
 <div id="approved-applications" class="section level3 hasAnchor" number="5.2.2">
-<h3><span class="header-section-number">5.2.2</span> Approved applications<a href="chapter-nasa-earthdata.html#approved-applications" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">5.2.2</span> Approved Applications<a href="chapter-nasa-earthdata.html#approved-applications" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>After creating an account, navigate to “My Profile”(<a href="https://urs.earthdata.nasa.gov/profile" class="uri">https://urs.earthdata.nasa.gov/profile</a>), and then to “Applications &gt; Authorized Apps”. This “Authorized Apps” page specifies which NASA EarthData applications can use your login credentials. Authorize the applications from which you will be downloading data.</p>
-<div class="float">
-<img src="images/nasa_earthdata/NASA_EarthData_applications.png" alt="NASA EarthData Approved Applications" />
-<div class="figcaption">NASA EarthData Approved Applications</div>
+<div class="figure">
+<img src="images/nasa_earthdata/NASA_EarthData_applications.png" style="width:100%">
+<figcaption>
+NASA EarthData Approved Applications
+</figcaption>
 </div>
 </div>
-<div id="prerequisite-files" class="section level3 hasAnchor" number="5.2.3">
-<h3><span class="header-section-number">5.2.3</span> Prerequisite files<a href="chapter-nasa-earthdata.html#prerequisite-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="generate-prerequisite-files" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Generate Prerequisite Files<a href="chapter-nasa-earthdata.html#generate-prerequisite-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Downloading password-protected data from a URL requires user credentials. Without prerequisite files containing user credentials, the data will not be downloaded correctly.</p>
 <div class="note">
 <p>Without the prerequisite files the download step run without error, but trying to open the zip file will return an error.</p>
 </div>
-<p>To demonstrate, try to download population density data <span class="citation">(<a href="#ref-sedac-gpwv4">Center for International Earth Science Information Network (CIESIN) - Columbia University 2018</a>)</span> from NASA’s Socioeconomic Data and Applications Center (SEDAC) archive center.</p>
+<p>To demonstrate, try to download population density data <span class="citation">(<a href="#ref-sedac-gpwv4">16</a>)</span> from NASA’s Socioeconomic Data and Applications Center (SEDAC) archive center.</p>
+<figcaption>
+NASA SEDAC Population Density Data Characteristics
+</figcaption>
 <table>
 <colgroup>
 <col width="22%" />
@@ -366,8 +375,8 @@ target="blank">Published with bookdown</a></li>
 <div class="warning">
 <p>The following steps return errors for Windows system users. File generation on Windows is currently in development.</p>
 </div>
-<div id="netrc" class="section level4 unnumbered hasAnchor">
-<h4><code>.netrc</code><a href="chapter-nasa-earthdata.html#netrc" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="netrc" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> <code>.netrc</code><a href="chapter-nasa-earthdata.html#netrc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The following commands create the <code>.netrc</code> file, which contains your NASA EarthData Account credentials.</p>
 <p>First, set your working directory to the home directory. Setting a working directory differs between Mac/Linux and Windows machines.</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="chapter-nasa-earthdata.html#cb113-1" tabindex="-1"></a><span class="cf">if</span> (.Platform<span class="sc">$</span>OS.type <span class="sc">==</span> <span class="st">&quot;unix&quot;</span>) {</span>
@@ -393,8 +402,8 @@ target="blank">Published with bookdown</a></li>
 <span id="cb120-2"><a href="chapter-nasa-earthdata.html#cb120-2" tabindex="-1"></a>  <span class="st">&quot;machine urs.earthdata.nasa.gov login YOUR_USERNAME password YOUR_PASSWORD&quot;</span></span>
 <span id="cb120-3"><a href="chapter-nasa-earthdata.html#cb120-3" tabindex="-1"></a>)</span></code></pre></div>
 </div>
-<div id="urs_cookies" class="section level4 unnumbered hasAnchor">
-<h4><code>.urs_cookies</code><a href="chapter-nasa-earthdata.html#urs_cookies" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="urs_cookies" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> <code>.urs_cookies</code><a href="chapter-nasa-earthdata.html#urs_cookies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The following commands create the <code>.urs_cookies</code> file.</p>
 <p>First, set your working directory to the home directory.</p>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="chapter-nasa-earthdata.html#cb121-1" tabindex="-1"></a><span class="cf">if</span> (.Platform<span class="sc">$</span>OS.type <span class="sc">==</span> <span class="st">&quot;unix&quot;</span>) {</span>
@@ -408,8 +417,8 @@ target="blank">Published with bookdown</a></li>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="chapter-nasa-earthdata.html#cb123-1" tabindex="-1"></a><span class="fu">file.exists</span>(<span class="st">&quot;.urs_cookies&quot;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="chapter-nasa-earthdata.html#cb124-1" tabindex="-1"></a><span class="cn">TRUE</span></span></code></pre></div>
 </div>
-<div id="dodsrc" class="section level4 unnumbered hasAnchor">
-<h4><code>.dodsrc</code><a href="chapter-nasa-earthdata.html#dodsrc" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="dodsrc" class="section level3 hasAnchor" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> <code>.dodsrc</code><a href="chapter-nasa-earthdata.html#dodsrc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The following commands create the <code>.dodsrc</code> file.</p>
 <p>First, set your working directory to the home directory.</p>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="chapter-nasa-earthdata.html#cb125-1" tabindex="-1"></a><span class="cf">if</span> (.Platform<span class="sc">$</span>OS.type <span class="sc">==</span> <span class="st">&quot;unix&quot;</span>) {</span>
@@ -448,7 +457,11 @@ target="blank">Published with bookdown</a></li>
 <div class="important">
 <p>Enter these commands, as well as your username, password, and home directory, without error. Even a single misplaced character can disrupt the verification of your EarthData credentials.</p>
 </div>
-<p>With the prerequisite files generated, try to download the SEDAC population data again.</p>
+</div>
+</div>
+<div id="download-data" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Download Data<a href="chapter-nasa-earthdata.html#download-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>With the prerequisite files generated, try to download the SEDAC population density data again.</p>
 <div class="note">
 <p>Be sure to authorize the “SEDAC” applications at “My Profile”(<a href="https://urs.earthdata.nasa.gov/profile" class="uri">https://urs.earthdata.nasa.gov/profile</a>) under “Applications &gt; Authorized Apps” before running the following command.</p>
 </div>
@@ -465,21 +478,19 @@ target="blank">Published with bookdown</a></li>
 
 </div>
 </div>
-</div>
-</div>
 
 
 
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-sedac-gpwv4" class="csl-entry">
-Center for International Earth Science Information Network (CIESIN) - Columbia University. 2018. <em>Gridded Population of the World, Version 4 (GPWv4): Population Density, Revision 11</em>. Palisades, New York: <span>NASA Socioeconomic Data and Applications Center (SEDAC)</span>. Dataset. <a href="https://doi.org/10.7927/H49C6VHW">https://doi.org/10.7927/H49C6VHW</a>.
-</div>
+<div id="refs" class="references csl-bib-body">
 <div id="ref-nasa-eosdis-daac" class="csl-entry">
-National Aeronautics and Space Administration (NASA). n.d.-a. <em>EOSDIS Distributed Active Archive Centers (DAAC)</em>. Website. <a href="https://www.earthdata.nasa.gov/eosdis/daacs">https://www.earthdata.nasa.gov/eosdis/daacs</a>.
+<div class="csl-left-margin">14. </div><div class="csl-right-inline">National Aeronautics and Space Administration (NASA). n.d. <em>EOSDIS Distributed Active Archive Centers (DAAC)</em>. Website. <a href="https://www.earthdata.nasa.gov/eosdis/daacs">https://www.earthdata.nasa.gov/eosdis/daacs</a></div>
 </div>
 <div id="ref-nasa-generate-prereq" class="csl-entry">
-———. n.d.-b. <em>How to Generate Earthdata Prerequisite Files</em>. Website. <a href="https://disc.gsfc.nasa.gov/information/howto?title=How%20to%20Generate%20Earthdata%20Prerequisite%20Files">https://disc.gsfc.nasa.gov/information/howto?title=How%20to%20Generate%20Earthdata%20Prerequisite%20Files</a>.
+<div class="csl-left-margin">15. </div><div class="csl-right-inline">National Aeronautics and Space Administration (NASA). n.d. <em>How to Generate Earthdata Prerequisite Files</em>. Website. <a href="https://disc.gsfc.nasa.gov/information/howto?title=How%20to%20Generate%20Earthdata%20Prerequisite%20Files">https://disc.gsfc.nasa.gov/information/howto?title=How%20to%20Generate%20Earthdata%20Prerequisite%20Files</a></div>
+</div>
+<div id="ref-sedac-gpwv4" class="csl-entry">
+<div class="csl-left-margin">16. </div><div class="csl-right-inline">Center for International Earth Science Information Network (CIESIN) - Columbia University. 2018. <em>Gridded Population of the World, Version 4 (GPWv4): Population Density, Revision 11</em>. Palisades, New York: <span>NASA Socioeconomic Data and Applications Center (SEDAC)</span>. Dataset. <a href="https://doi.org/10.7927/H49C6VHW">https://doi.org/10.7927/H49C6VHW</a></div>
 </div>
 </div>
             </section>

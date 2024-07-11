@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2 Point Data | The CHORDS Toolkit for Health and Geospatial Exposures Research</title>
   <meta name="description" content="The CHORDS Toolkit provides guides, tools, and example code to support climate change and human health research." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2 Point Data | The CHORDS Toolkit for Health and Geospatial Exposures Research" />
   <meta property="og:type" content="book" />
@@ -126,7 +126,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -204,6 +203,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.1" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#introduction-5"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#nasa-earthdata-account"><i class="fa fa-check"></i><b>5.2</b> NASA EarthData Account</a></li>
+<li class="chapter" data-level="5.3" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#generate-prerequisite-files"><i class="fa fa-check"></i><b>5.3</b> Generate Prerequisite Files</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#download-data"><i class="fa fa-check"></i><b>5.4</b> Download Data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="health-data-integration.html"><a href="health-data-integration.html"><i class="fa fa-check"></i><strong>Health Data Integration</strong></a></li>
 <li class="chapter" data-level="6" data-path="chapter-link-to-census.html"><a href="chapter-link-to-census.html"><i class="fa fa-check"></i><b>6</b> Linkage to Census Units</a>
@@ -216,7 +217,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.1" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#introduction-7"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#tutorial-1"><i class="fa fa-check"></i><b>7.2</b> Tutorial</a></li>
-<li class="chapter" data-level="7.3" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#considerations-1"><i class="fa fa-check"></i><b>7.3</b> Considerations</a></li>
+<li class="chapter" data-level="7.3" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#fhir-pit-considerations"><i class="fa fa-check"></i><b>7.3</b> Considerations</a></li>
 <li class="chapter" data-level="7.4" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#concluding-remarks-1"><i class="fa fa-check"></i><b>7.4</b> Concluding Remarks</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="case-studies.html"><a href="case-studies.html"><i class="fa fa-check"></i><strong>Case Studies</strong></a></li>
@@ -259,7 +260,7 @@ target="blank">Published with bookdown</a></li>
 </div>
 <div id="introduction-2" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Introduction<a href="chapter-point-data.html#introduction-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Air pollution monitoring data from the United States Environmental Protection Agency (EPA) will be used to demonstrate using point data with the <code>sf</code> package <span class="citation">(<a href="#ref-r-sf-1">Pebesma 2018</a>)</span>.</p>
+<p>Air pollution monitoring data from the United States Environmental Protection Agency (EPA) will be used to demonstrate using point data with the <code>sf</code> package <span class="citation">(<a href="#ref-r-sf-1">1</a>)</span>.</p>
 <p>This tutorial will demonstrate the following steps with point data in <code>R</code>:</p>
 <ul>
 <li>Downloading data from a URL</li>
@@ -320,7 +321,7 @@ target="blank">Published with bookdown</a></li>
 </div>
 <div id="subset" class="section level3 hasAnchor" number="2.3.3">
 <h3><span class="header-section-number">2.3.3</span> Subset<a href="chapter-point-data.html#subset" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Checking the data’s structure shows that <code>pm</code> is a very large data set. Each of the variables convey important information related to air pollution monitoring, but not all will be utilized in these exploratory analyses.</p>
+<p>Checking the data structure shows that <code>pm</code> is a very large data set. Each of the variables convey important information related to air pollution monitoring, but not all will be utilized in these exploratory analyses.</p>
 <p>The data set can be reduced to include only the variables of interest with the <code>subset()</code> function. The <code>select =</code> argument indicates which variables to be retained in the new data set.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="chapter-point-data.html#cb8-1" tabindex="-1"></a>pm <span class="ot">&lt;-</span> <span class="fu">subset</span>(pm, <span class="at">select =</span> <span class="fu">c</span>(</span>
 <span id="cb8-2"><a href="chapter-point-data.html#cb8-2" tabindex="-1"></a>  State.Code,</span>
@@ -332,7 +333,7 @@ target="blank">Published with bookdown</a></li>
 <span id="cb8-8"><a href="chapter-point-data.html#cb8-8" tabindex="-1"></a>  Date.Local,</span>
 <span id="cb8-9"><a href="chapter-point-data.html#cb8-9" tabindex="-1"></a>  Arithmetic.Mean</span>
 <span id="cb8-10"><a href="chapter-point-data.html#cb8-10" tabindex="-1"></a>))</span></code></pre></div>
-<p>Re-running <code>str(pm)</code> after subsetting the data set shows that all all observations (n = 590208) of the variables of interest (n = 8) have been retained.</p>
+<p>Re-running <code>str(pm)</code> after subsetting the data set shows that all observations (n = 590,208) of the variables of interest (n = 8) have been retained.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="chapter-point-data.html#cb9-1" tabindex="-1"></a><span class="fu">str</span>(pm,</span>
 <span id="cb9-2"><a href="chapter-point-data.html#cb9-2" tabindex="-1"></a>  <span class="at">vec.len =</span> <span class="dv">2</span></span>
 <span id="cb9-3"><a href="chapter-point-data.html#cb9-3" tabindex="-1"></a>)</span></code></pre></div>
@@ -427,7 +428,7 @@ target="blank">Published with bookdown</a></li>
 <span id="cb20-5"><a href="chapter-point-data.html#cb20-5" tabindex="-1"></a>)</span></code></pre></div>
 <p>Each unique monitor identification code should be matched with a unique monitor location geometry. To ensure that each monitor location has a unique identification code, check that there are an equal number of unique geometries and identification codes.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="chapter-point-data.html#cb21-1" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(pm_sf<span class="sc">$</span>Monitor.ID)) <span class="sc">==</span> <span class="fu">length</span>(<span class="fu">unique</span>(pm_sf<span class="sc">$</span>geometry))</span></code></pre></div>
-<p>Now that each monitor location as a unique identification code, we can calculate the mean PM<sub>2.5</sub> concentration measured at each monitoring location. Functions and syntax from the <code>dplyr</code> package will be used to do this. For more on the <code>dplyr</code> package, please see <a href="https://dplyr.tidyverse.org/articles/dplyr.html">Introduction to dplyr</a>.</p>
+<p>Now that each monitor location has a unique identification code, we can calculate the mean PM<sub>2.5</sub> concentration measured at each monitoring location. Functions and syntax from the <code>dplyr</code> package will be used to do this. For more on the <code>dplyr</code> package, please see <a href="https://dplyr.tidyverse.org/articles/dplyr.html">Introduction to dplyr</a>.</p>
 <p>The <code>group_by(Monitor.ID, )</code> argument specifies that an annual mean should be calculated for each unique <code>Monitor.ID</code>. Including <code>State.Name</code> in this argument retains the column in the new <code>pm_mean</code> data set, but does not influence the calculation of the annual mean.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="chapter-point-data.html#cb22-1" tabindex="-1"></a>pm_mean <span class="ot">&lt;-</span></span>
 <span id="cb22-2"><a href="chapter-point-data.html#cb22-2" tabindex="-1"></a>  pm_sf <span class="sc">%&gt;%</span></span>
@@ -514,9 +515,9 @@ target="blank">Published with bookdown</a></li>
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="refs" class="references csl-bib-body">
 <div id="ref-r-sf-1" class="csl-entry">
-Pebesma, Edzer. 2018. <span>“<span class="nocase">Simple Features for <span>R</span>: Standardized Support for Spatial Vector Data</span>.”</span> <em><span>The R Journal</span></em> 10 (1): 439–46. <a href="https://doi.org/10.32614/RJ-2018-009">https://doi.org/10.32614/RJ-2018-009</a>.
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Pebesma, Edzer. 2018. <span>“<span class="nocase">Simple Features for <span>R</span>: Standardized Support for Spatial Vector Data</span>.”</span> <em><span>The R Journal</span></em> 10 (1): 439–46. <a href="https://doi.org/10.32614/RJ-2018-009">https://doi.org/10.32614/RJ-2018-009</a></div>
 </div>
 </div>
             </section>

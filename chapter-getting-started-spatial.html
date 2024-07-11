@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1 Getting Started | The CHORDS Toolkit for Health and Geospatial Exposures Research</title>
   <meta name="description" content="The CHORDS Toolkit provides guides, tools, and example code to support climate change and human health research." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1 Getting Started | The CHORDS Toolkit for Health and Geospatial Exposures Research" />
   <meta property="og:type" content="book" />
@@ -126,7 +126,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -204,6 +203,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.1" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#introduction-5"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#nasa-earthdata-account"><i class="fa fa-check"></i><b>5.2</b> NASA EarthData Account</a></li>
+<li class="chapter" data-level="5.3" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#generate-prerequisite-files"><i class="fa fa-check"></i><b>5.3</b> Generate Prerequisite Files</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#download-data"><i class="fa fa-check"></i><b>5.4</b> Download Data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="health-data-integration.html"><a href="health-data-integration.html"><i class="fa fa-check"></i><strong>Health Data Integration</strong></a></li>
 <li class="chapter" data-level="6" data-path="chapter-link-to-census.html"><a href="chapter-link-to-census.html"><i class="fa fa-check"></i><b>6</b> Linkage to Census Units</a>
@@ -216,7 +217,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.1" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#introduction-7"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#tutorial-1"><i class="fa fa-check"></i><b>7.2</b> Tutorial</a></li>
-<li class="chapter" data-level="7.3" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#considerations-1"><i class="fa fa-check"></i><b>7.3</b> Considerations</a></li>
+<li class="chapter" data-level="7.3" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#fhir-pit-considerations"><i class="fa fa-check"></i><b>7.3</b> Considerations</a></li>
 <li class="chapter" data-level="7.4" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#concluding-remarks-1"><i class="fa fa-check"></i><b>7.4</b> Concluding Remarks</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="case-studies.html"><a href="case-studies.html"><i class="fa fa-check"></i><strong>Case Studies</strong></a></li>
@@ -276,9 +277,11 @@ target="blank">Published with bookdown</a></li>
 <h2><span class="header-section-number">1.2</span> Concepts and Terminology<a href="chapter-getting-started-spatial.html#concepts-and-terminology" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="spatial-geometry" class="section level3 hasAnchor" number="1.2.1">
 <h3><span class="header-section-number">1.2.1</span> Spatial Geometry<a href="chapter-getting-started-spatial.html#spatial-geometry" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The <em>spatial geometry</em> of a geospatial dataset is an important consideration in data analysis pipelines.</p>
-<p>There are three main spatial geometry types: point, line, and area (i.e., polygon or grid). <em>Points</em> are represented by geographic coordinates (latitude and longitude pairs), <em>lines</em> by a series of connected points, and <em>polygons</em> by a series of connected points that completely enclose and define an area. In contrast to polygons, which can define irregular or non-uniform areas, <em>grids</em> define regular and uniform areas (e.g., such that each gridcell has the same area). Point, line, and polygon data is referred to as <em>vector</em> data, and grid data is referred to as <em>raster</em> data. For detailed descriptions of vector data, raster data, and the differences between them, respectively, see <span class="citation">Pebesma (<a href="#ref-r-sf-1">2018</a>)</span>, <span class="citation"><em>Introduction to Raster Data</em> (<a href="#ref-raster-data">2023</a>)</span>, and <span class="citation">Lovelace, Nowosad, and Muenchow (<a href="#ref-geocomputation-2">2019b</a>)</span>.</p>
-<p>The following table illustrates common examples of each spatial geometry type used in environmental health applications:</p>
+<p>The <em>spatial geometry</em> of a geospatial dataset is an important consideration in data analysis pipelines. There are three main spatial geometry types: point, line, and area (i.e., polygon or grid). <em>Points</em> are represented by geographic coordinates (latitude and longitude pairs), <em>lines</em> by a series of connected points, and <em>polygons</em> by a series of connected points that completely enclose and define an area. In contrast to polygons, which can define irregular or non-uniform areas, <em>grids</em> define regular and uniform areas (e.g., such that each grid cell has the same area). Point, line, and polygon data is referred to as <em>vector</em> data, and grid data is referred to as <em>raster</em> data. For detailed descriptions of vector data, raster data, and the differences between them, respectively, see <span class="citation">(<a href="#ref-r-sf-1">1</a>)</span>, <span class="citation">(<a href="#ref-raster-data">2</a>)</span> and <span class="citation">(<a href="#ref-geocomputation-2">3</a>)</span>.</p>
+<p>The following table illustrates common examples of each spatial geometry type used in environmental health applications.</p>
+<figcaption>
+Spatial Geometry Types
+</figcaption>
 <table>
 <colgroup>
 <col width="8%" />
@@ -325,7 +328,7 @@ target="blank">Published with bookdown</a></li>
 </div>
 <div id="getting-started-spatial-crs" class="section level3 hasAnchor" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> Coordinate Reference Systems and Projections<a href="chapter-getting-started-spatial.html#getting-started-spatial-crs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Coordinate reference systems (CRS) are important for spatial analyses as they define how spatial data align with the Earth’s surface <span class="citation">(<a href="#ref-geocomputation-24">Lovelace, Nowosad, and Muenchow 2019a</a>)</span>. Transforming (projecting) the data to a different CRS may be necessary when combining multiple datasets or creating visuals for particular areas of interest. It is important to note that transforming spatial data can cause distortions in its area, direction, distance, or shape <span class="citation">(<a href="#ref-geocomputation-24">Lovelace, Nowosad, and Muenchow 2019a</a>)</span>. The direction and magnitude of these distortions vary depending on the chosen CRS, area of interest, and type of data <span class="citation">(<a href="#ref-article_steinwand1995reprojection">Steinwand, Hutchinson, and Snyder 1995</a>)</span>. For guidance on selecting an appropriate CRS based on the data, area of interest, and analysis goals, see <a href="https://learn.arcgis.com/en/projects/choose-the-right-projection/."><em>Choose the Right Projection</em></a> <span class="citation">(<a href="#ref-arcgis-crs">Esri 2023</a>)</span> and <a href="https://pubs.usgs.gov/gip/70047422/report.pdf"><em>Map Projections</em></a> <span class="citation">(<a href="#ref-usgs-projections">United States Geological Survey (USGS) 2019</a>)</span>.</p>
+<p>Coordinate reference systems (CRS) are important for spatial analyses as they define how spatial data align with the Earth’s surface <span class="citation">(<a href="#ref-geocomputation-24">4</a>)</span>. Transforming (projecting) the data to a different CRS may be necessary when combining multiple datasets or creating visuals for particular areas of interest. It is important to note that transforming spatial data can cause distortions in its area, direction, distance, or shape <span class="citation">(<a href="#ref-geocomputation-24">4</a>)</span>. The direction and magnitude of these distortions vary depending on the chosen CRS, area of interest, and type of data <span class="citation">(<a href="#ref-article_steinwand1995reprojection">5</a>)</span>. For guidance on selecting an appropriate CRS based on the data, area of interest, and analysis goals, see <span class="citation">(<a href="#ref-arcgis-crs">6</a>,<a href="#ref-usgs-projections">7</a>)</span>.</p>
 </div>
 </div>
 <div id="datasets" class="section level2 hasAnchor" number="1.3">
@@ -372,9 +375,9 @@ target="blank">Published with bookdown</a></li>
 <h2><span class="header-section-number">1.4</span> <code>R</code> Packages<a href="chapter-getting-started-spatial.html#r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The tutorials in this unit demonstrate the use of the following <code>R</code> packages:</p>
 <ul>
-<li><p><strong>Spatial Analysis:</strong> <a href="https://cran.r-project.org/web/packages/sf/sf.pdf"><code>sf</code></a> <span class="citation">(<a href="#ref-r-sf-1">Pebesma 2018</a>; <a href="#ref-r-sf-2">Pebesma and Bivand 2023</a>)</span>, <a href="https://cran.r-project.org/web/packages/terra/terra.pdf"><code>terra</code></a> <span class="citation">(<a href="#ref-r-terra">Hijmans 2024</a>)</span>, <a href="(https://cran.r-project.org/web/packages/tidyterra/tidyterra.pdf)"><code>tidyterra</code></a> <span class="citation">(<a href="#ref-r-tidyterra">Hernangómez 2023</a>)</span></p></li>
-<li><p><strong>Data Visualization:</strong> <a href="https://cran.r-project.org/web/packages/ggplot2/ggplot2.pdf"><code>ggplot2</code></a>, <span class="citation">(<a href="#ref-r-ggplot2">Wickham 2016</a>)</span>, <a href="https://cran.r-project.org/web/packages/ggpubr/ggpubr.pdf"><code>ggpubr</code></a> <span class="citation">(<a href="#ref-r-ggpubr">Kassambara 2023</a>)</span></p></li>
-<li><p><strong>Data Processing:</strong> <a href="https://cran.r-project.org/web/packages/dplyr/dplyr.pdf"><code>dplyr</code></a> <span class="citation">(<a href="#ref-r-dplyr">Wickham et al. 2023</a>)</span></p></li>
+<li><p><strong>Spatial Analysis:</strong> <a href="https://cran.r-project.org/web/packages/sf/sf.pdf"><code>sf</code></a> <span class="citation">(<a href="#ref-r-sf-1">1</a>,<a href="#ref-r-sf-2">8</a>)</span>, <a href="https://cran.r-project.org/web/packages/terra/terra.pdf"><code>terra</code></a> <span class="citation">(<a href="#ref-r-terra">9</a>)</span>, <a href="(https://cran.r-project.org/web/packages/tidyterra/tidyterra.pdf)"><code>tidyterra</code></a> <span class="citation">(<a href="#ref-r-tidyterra">10</a>)</span></p></li>
+<li><p><strong>Data Visualization:</strong> <a href="https://cran.r-project.org/web/packages/ggplot2/ggplot2.pdf"><code>ggplot2</code></a> <span class="citation">(<a href="#ref-r-ggplot2">11</a>)</span>, <a href="https://cran.r-project.org/web/packages/ggpubr/ggpubr.pdf"><code>ggpubr</code></a> <span class="citation">(<a href="#ref-r-ggpubr">12</a>)</span></p></li>
+<li><p><strong>Data Processing:</strong> <a href="https://cran.r-project.org/web/packages/dplyr/dplyr.pdf"><code>dplyr</code></a> <span class="citation">(<a href="#ref-r-dplyr">13</a>)</span></p></li>
 </ul>
 <p>The following code installs and imports the packages used in this unit:</p>
 <div class="note">
@@ -412,45 +415,45 @@ target="blank">Published with bookdown</a></li>
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-arcgis-crs" class="csl-entry">
-Esri. 2023. <em>Choose the Right Projection</em>. Website. <a href="https://learn.arcgis.com/en/projects/choose-the-right-projection/">https://learn.arcgis.com/en/projects/choose-the-right-projection/</a>.
-</div>
-<div id="ref-r-tidyterra" class="csl-entry">
-Hernangómez, Diego. 2023. <span>“Using the <span class="nocase">tidyverse</span> with <span class="nocase">terra</span> Objects: The <span class="nocase">tidyterra</span> Package.”</span> <em>Journal of Open Source Software</em> 8 (91): 5751. <a href="https://doi.org/10.21105/joss.05751">https://doi.org/10.21105/joss.05751</a>.
-</div>
-<div id="ref-r-terra" class="csl-entry">
-Hijmans, Robert J. 2024. <em><span class="nocase">terra</span>: Spatial Data Analysis</em>. R package version 1.7-71. <a href="https://CRAN.R-project.org/package=terra">https://CRAN.R-project.org/package=terra</a>.
+<div id="refs" class="references csl-bib-body">
+<div id="ref-r-sf-1" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Pebesma, Edzer. 2018. <span>“<span class="nocase">Simple Features for <span>R</span>: Standardized Support for Spatial Vector Data</span>.”</span> <em><span>The R Journal</span></em> 10 (1): 439–46. <a href="https://doi.org/10.32614/RJ-2018-009">https://doi.org/10.32614/RJ-2018-009</a></div>
 </div>
 <div id="ref-raster-data" class="csl-entry">
-<em>Introduction to Raster Data</em>. 2023. <a href="https://datacarpentry.org/organization-geospatial/01-intro-raster-data">https://datacarpentry.org/organization-geospatial/01-intro-raster-data</a>.
-</div>
-<div id="ref-r-ggpubr" class="csl-entry">
-Kassambara, Alboukadel. 2023. <em><span class="nocase">ggpubr</span>: <span class="nocase">’ggplot2’</span> Based Publication Ready Plots</em>. R package version 0.6.0. <a href="https://CRAN.R-project.org/package=ggpubr">https://CRAN.R-project.org/package=ggpubr</a>.
-</div>
-<div id="ref-geocomputation-24" class="csl-entry">
-Lovelace, Robin, Jakub Nowosad, and Jannes Muenchow. 2019a. <span>“Coordinate Reference Systems.”</span> In <em>Geocomputation with <span>R</span></em>. Chapman; Hall/CRC. <a href="https://r.geocompx.org/spatial-class#crs-intro">https://r.geocompx.org/spatial-class#crs-intro</a>.
+<div class="csl-left-margin">2. </div><div class="csl-right-inline"><em>Introduction to Raster Data</em>. 2023. <a href="https://datacarpentry.org/organization-geospatial/01-intro-raster-data">https://datacarpentry.org/organization-geospatial/01-intro-raster-data</a></div>
 </div>
 <div id="ref-geocomputation-2" class="csl-entry">
-———. 2019b. <span>“Geographic Data in <span>R</span>.”</span> In <em>Geocomputation with <span>R</span></em>. Chapman; Hall/CRC. <a href="https://r.geocompx.org/spatial-class#spatial-class">https://r.geocompx.org/spatial-class#spatial-class</a>.
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">Lovelace, Robin, Jakub Nowosad, and Jannes Muenchow. 2019. <span>“Geographic Data in <span>R</span>.”</span> In <em>Geocomputation with <span>R</span></em>. Chapman; Hall/CRC. <a href="https://r.geocompx.org/spatial-class#spatial-class">https://r.geocompx.org/spatial-class#spatial-class</a></div>
 </div>
-<div id="ref-r-sf-1" class="csl-entry">
-Pebesma, Edzer. 2018. <span>“<span class="nocase">Simple Features for <span>R</span>: Standardized Support for Spatial Vector Data</span>.”</span> <em><span>The R Journal</span></em> 10 (1): 439–46. <a href="https://doi.org/10.32614/RJ-2018-009">https://doi.org/10.32614/RJ-2018-009</a>.
-</div>
-<div id="ref-r-sf-2" class="csl-entry">
-Pebesma, Edzer, and Roger Bivand. 2023. <em>Spatial Data Science: With Applications in <span>R</span></em>. <span>Chapman and Hall/CRC</span>. <a href="https://doi.org/10.1201/9780429459016">https://doi.org/10.1201/9780429459016</a>.
+<div id="ref-geocomputation-24" class="csl-entry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Lovelace, Robin, Jakub Nowosad, and Jannes Muenchow. 2019. <span>“Coordinate Reference Systems.”</span> In <em>Geocomputation with <span>R</span></em>. Chapman; Hall/CRC. <a href="https://r.geocompx.org/spatial-class#crs-intro">https://r.geocompx.org/spatial-class#crs-intro</a></div>
 </div>
 <div id="ref-article_steinwand1995reprojection" class="csl-entry">
-Steinwand, Daniel R, John A Hutchinson, and John P Snyder. 1995. <span>“Map Projections for Global and Gontinental Data Sets and an Analysis of Pixel Distortion Caused by Reproiection.”</span> <em>Photogrammetric Engineering &amp; Remote Sensing</em> 61 (12): 1487–97.
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Steinwand, Daniel R, John A Hutchinson, and John P Snyder. 1995. <span>“Map Projections for Global and Gontinental Data Sets and an Analysis of Pixel Distortion Caused by Reproiection.”</span> <em>Photogrammetric Engineering &amp; Remote Sensing</em> 61 (12): 1487–97</div>
+</div>
+<div id="ref-arcgis-crs" class="csl-entry">
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">Esri. 2023. <em>Choose the Right Projection</em>. Website. <a href="https://learn.arcgis.com/en/projects/choose-the-right-projection/">https://learn.arcgis.com/en/projects/choose-the-right-projection/</a></div>
 </div>
 <div id="ref-usgs-projections" class="csl-entry">
-United States Geological Survey (USGS). 2019. <em>Map Projections</em>. Website. <a href="https://pubs.usgs.gov/gip/70047422/report.pdf">https://pubs.usgs.gov/gip/70047422/report.pdf</a>.
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">United States Geological Survey (USGS). 2019. <em>Map Projections</em>. Website. <a href="https://pubs.usgs.gov/gip/70047422/report.pdf">https://pubs.usgs.gov/gip/70047422/report.pdf</a></div>
+</div>
+<div id="ref-r-sf-2" class="csl-entry">
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Pebesma, Edzer, and Roger Bivand. 2023. <em>Spatial Data Science: With Applications in <span>R</span></em>. <span>Chapman and Hall/CRC</span>. <a href="https://doi.org/10.1201/9780429459016">https://doi.org/10.1201/9780429459016</a></div>
+</div>
+<div id="ref-r-terra" class="csl-entry">
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Hijmans, Robert J. 2024. <em><span class="nocase">terra</span>: Spatial Data Analysis</em>. R Package Version 1.7-71. <a href="https://CRAN.R-project.org/package=terra">https://CRAN.R-project.org/package=terra</a></div>
+</div>
+<div id="ref-r-tidyterra" class="csl-entry">
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">Hernangómez, Diego. 2023. <span>“Using the <span class="nocase">tidyverse</span> with <span class="nocase">terra</span> Objects: The <span class="nocase">tidyterra</span> Package.”</span> <em>Journal of Open Source Software</em> 8 (91): 5751. <a href="https://doi.org/10.21105/joss.05751">https://doi.org/10.21105/joss.05751</a></div>
 </div>
 <div id="ref-r-ggplot2" class="csl-entry">
-Wickham, Hadley. 2016. <em><span class="nocase">ggplot2</span>: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a>.
+<div class="csl-left-margin">11. </div><div class="csl-right-inline">Wickham, Hadley. 2016. <em><span class="nocase">ggplot2</span>: Elegant Graphics for Data Analysis</em>. Springer-Verlag New York. <a href="https://ggplot2.tidyverse.org">https://ggplot2.tidyverse.org</a></div>
+</div>
+<div id="ref-r-ggpubr" class="csl-entry">
+<div class="csl-left-margin">12. </div><div class="csl-right-inline">Kassambara, Alboukadel. 2023. <em><span class="nocase">ggpubr</span>: <span class="nocase">’ggplot2’</span> Based Publication Ready Plots</em>. R Package Version 0.6.0. <a href="https://CRAN.R-project.org/package=ggpubr">https://CRAN.R-project.org/package=ggpubr</a></div>
 </div>
 <div id="ref-r-dplyr" class="csl-entry">
-Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2023. <em><span class="nocase">dplyr</span>: A Grammar of Data Manipulation</em>. R package version 1.1.4. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
+<div class="csl-left-margin">13. </div><div class="csl-right-inline">Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2023. <em><span class="nocase">dplyr</span>: A Grammar of Data Manipulation</em>. R Package Version 1.1.4. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a></div>
 </div>
 </div>
             </section>

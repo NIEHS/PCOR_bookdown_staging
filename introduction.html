@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>The CHORDS Toolkit for Health and Geospatial Exposures Research</title>
   <meta name="description" content="The CHORDS Toolkit provides guides, tools, and example code to support climate change and human health research." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="The CHORDS Toolkit for Health and Geospatial Exposures Research" />
   <meta property="og:type" content="book" />
@@ -126,7 +126,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -204,6 +203,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.1" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#introduction-5"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#nasa-earthdata-account"><i class="fa fa-check"></i><b>5.2</b> NASA EarthData Account</a></li>
+<li class="chapter" data-level="5.3" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#generate-prerequisite-files"><i class="fa fa-check"></i><b>5.3</b> Generate Prerequisite Files</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#download-data"><i class="fa fa-check"></i><b>5.4</b> Download Data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="health-data-integration.html"><a href="health-data-integration.html"><i class="fa fa-check"></i><strong>Health Data Integration</strong></a></li>
 <li class="chapter" data-level="6" data-path="chapter-link-to-census.html"><a href="chapter-link-to-census.html"><i class="fa fa-check"></i><b>6</b> Linkage to Census Units</a>
@@ -216,7 +217,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.1" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#introduction-7"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#tutorial-1"><i class="fa fa-check"></i><b>7.2</b> Tutorial</a></li>
-<li class="chapter" data-level="7.3" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#considerations-1"><i class="fa fa-check"></i><b>7.3</b> Considerations</a></li>
+<li class="chapter" data-level="7.3" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#fhir-pit-considerations"><i class="fa fa-check"></i><b>7.3</b> Considerations</a></li>
 <li class="chapter" data-level="7.4" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#concluding-remarks-1"><i class="fa fa-check"></i><b>7.4</b> Concluding Remarks</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="case-studies.html"><a href="case-studies.html"><i class="fa fa-check"></i><strong>Case Studies</strong></a></li>
@@ -247,20 +248,18 @@ target="blank">Published with bookdown</a></li>
             <section class="normal" id="section-">
 <div id="header">
 <h1 class="title">The CHORDS Toolkit for Health and Geospatial Exposures Research</h1>
-<h2 class="subtitle"><em>Review Version Only – Do Not Distribute</em></h2>
-<p class="date"><em>Last Modified: July 01, 2024 (Version 1.0)</em></p>
+<p class="date"><em>Last Modified: July 11, 2024 (Version 1.0)</em></p>
 </div>
 <div id="introduction" class="section level1 unnumbered hasAnchor">
 <h1><strong>Introduction</strong><a href="introduction.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <hr />
-<p>Researchers interested in studying the health impacts of climate change and related natural disasters need access to relevant, timely, and harmonized data on environmental exposures, social determinants of health variables, and health outcomes. However, such datasets are often developed for different purposes, reside in multiple locations, and require linkage.</p>
-<p>The Climate and Health Outcomes Research Data Systems (CHORDS) Toolkit seeks to aid researchers in accessing, processing, and integrating geospatial data-based exposures into their health research by providing guides, tools, and example code.</p>
+<p>Researchers interested in studying the health impacts of climate change and climate related disasters need access to relevant, timely, and harmonized data on environmental exposures, social determinants of health variables, and health outcomes. However, such datasets are often developed for different purposes, reside in multiple locations, and require linkage. The Climate and Health Outcomes Research Data Systems (CHORDS) Project seeks to connect researchers to environmental and health datasets with a toolkit that provides guides, tutorials, and example code to improve integration of geospatial data-based exposures and health data and records into their research.</p>
 <div id="about-chords" class="section level2 unnumbered hasAnchor">
 <h2>About CHORDS<a href="introduction.html#about-chords" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <a href="https://www.niehs.nih.gov/research/programs/chords">Climate and Health Outcomes Research Data Systems (CHORDS)</a> program provides resources aimed at making it easier for researchers to study the effects of place-based environmental exposures on health outcomes. The CHORDS resources include a <a href="https://chords.niehs.nih.gov">web-based data catalog</a>, standardized data sets, and this toolkit.</p>
-<center>
-<p><img src="images/chords-art-logo.png" /></p>
-</center>
+<div class="figure">
+<p><img src="images/chords-art-logo.png" style="width:100%"></p>
+</div>
 </div>
 <div id="about-this-toolkit" class="section level2 unnumbered hasAnchor">
 <h2>About This Toolkit<a href="introduction.html#about-this-toolkit" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -279,7 +278,7 @@ target="blank">Published with bookdown</a></li>
 <p><em>This is a BETA Release. Please let us know of any improvements we can make.</em></p>
 <div id="funding" class="section level3 unnumbered hasAnchor">
 <h3>Funding<a href="introduction.html#funding" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>This resource was supported by the National Institutes of Health (NIH) from the National Institute of Environmental Health Sciences (NIEHS) and NIH Office of Data Science Strategy (ODSS), and the Department of Health and Human Services (DHHS) Office of the Assistant Secretary for Planning and Evaluation (ASPE) Office of the Secretary’s Patient Centered Outcomes Research Trust Fund (OS-PCORTF).</p>
+<p>This resource was supported by the Department of Health and Human Services (DHHS) Office of the Assistant Secretary for Planning and Evaluation (ASPE) Office of the Secretary’s Patient Centered Outcomes Research Trust Fund (OS-PCORTF) and by the National Institutes of Health (NIH) from the National Institute of Environmental Health Sciences (NIEHS) and the NIH Office of Data Science Strategy (ODSS).</p>
 
 </div>
 </div>

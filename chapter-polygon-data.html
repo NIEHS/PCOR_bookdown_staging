@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3 Polygon Data | The CHORDS Toolkit for Health and Geospatial Exposures Research</title>
   <meta name="description" content="The CHORDS Toolkit provides guides, tools, and example code to support climate change and human health research." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.40 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3 Polygon Data | The CHORDS Toolkit for Health and Geospatial Exposures Research" />
   <meta property="og:type" content="book" />
@@ -126,7 +126,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -204,6 +203,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="5.1" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#introduction-5"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
 <li class="chapter" data-level="5.2" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#nasa-earthdata-account"><i class="fa fa-check"></i><b>5.2</b> NASA EarthData Account</a></li>
+<li class="chapter" data-level="5.3" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#generate-prerequisite-files"><i class="fa fa-check"></i><b>5.3</b> Generate Prerequisite Files</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter-nasa-earthdata.html"><a href="chapter-nasa-earthdata.html#download-data"><i class="fa fa-check"></i><b>5.4</b> Download Data</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="health-data-integration.html"><a href="health-data-integration.html"><i class="fa fa-check"></i><strong>Health Data Integration</strong></a></li>
 <li class="chapter" data-level="6" data-path="chapter-link-to-census.html"><a href="chapter-link-to-census.html"><i class="fa fa-check"></i><b>6</b> Linkage to Census Units</a>
@@ -216,7 +217,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.1" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#introduction-7"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
 <li class="chapter" data-level="7.2" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#tutorial-1"><i class="fa fa-check"></i><b>7.2</b> Tutorial</a></li>
-<li class="chapter" data-level="7.3" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#considerations-1"><i class="fa fa-check"></i><b>7.3</b> Considerations</a></li>
+<li class="chapter" data-level="7.3" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#fhir-pit-considerations"><i class="fa fa-check"></i><b>7.3</b> Considerations</a></li>
 <li class="chapter" data-level="7.4" data-path="chapter-fhir-pit.html"><a href="chapter-fhir-pit.html#concluding-remarks-1"><i class="fa fa-check"></i><b>7.4</b> Concluding Remarks</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="case-studies.html"><a href="case-studies.html"><i class="fa fa-check"></i><strong>Case Studies</strong></a></li>
@@ -259,7 +260,7 @@ target="blank">Published with bookdown</a></li>
 </div>
 <div id="introduction-3" class="section level2 hasAnchor" number="3.1">
 <h2><span class="header-section-number">3.1</span> Introduction<a href="chapter-polygon-data.html#introduction-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Wildfire smoke plume coverage data from the United States National Oceanic and Atmospheric Administration (NOAA) will be used to demonstrate using polygon data. This tutorial will cover polygon data with both the <code>sf</code> <span class="citation">(<a href="#ref-r-sf-1">Pebesma 2018</a>)</span> and <code>terra</code> <span class="citation">(<a href="#ref-r-terra">Hijmans 2024</a>)</span> packages separately, but the steps for accessing, downloading, and unzipping the data is the same for both packages.</p>
+<p>Wildfire smoke plume coverage data from the United States National Oceanic and Atmospheric Administration (NOAA) will be used to demonstrate using polygon data. This tutorial will cover polygon data with both the <code>sf</code> <span class="citation">(<a href="#ref-r-sf-1">1</a>)</span> and <code>terra</code> <span class="citation">(<a href="#ref-r-terra">9</a>)</span> packages separately, but the steps for accessing, downloading, and unzipping the data is the same for both packages.</p>
 <p>This tutorial will demonstrate the following steps with polygon data in <code>R</code>:</p>
 <ul>
 <li>Downloading data from a URL</li>
@@ -372,7 +373,7 @@ target="blank">Published with bookdown</a></li>
 <div id="plot-single" class="section level3 hasAnchor" number="3.4.1">
 <h3><span class="header-section-number">3.4.1</span> Plot (Single)<a href="chapter-polygon-data.html#plot-single" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>With the data prepared, plot the wildfire smoke plume polygons with <code>ggplot2::ggplot()</code>.</p>
-<p>Now that the parameters of interest and coordinate reference system have been prepared, create a plot with <code>ggplot2::ggplot()</code>. Identifying the data set to be plotted within the <code>geom_sf()</code> arguement informs the function that the data is an <code>sf</code> object.</p>
+<p>Now that the parameters of interest and coordinate reference system have been prepared, create a plot with <code>ggplot2::ggplot()</code>. Identifying the data set to be plotted within the <code>geom_sf()</code> argument informs the function that the data is an <code>sf</code> object.</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="chapter-polygon-data.html#cb44-1" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb44-2"><a href="chapter-polygon-data.html#cb44-2" tabindex="-1"></a>  <span class="fu">geom_sf</span>(</span>
 <span id="cb44-3"><a href="chapter-polygon-data.html#cb44-3" tabindex="-1"></a>    <span class="at">data =</span> smoke_sf,</span>
@@ -529,7 +530,7 @@ target="blank">Published with bookdown</a></li>
 </div>
 <div id="data-preparation-with-terra" class="section level2 hasAnchor" number="3.5">
 <h2><span class="header-section-number">3.5</span> Data Preparation with <code>terra</code><a href="chapter-polygon-data.html#data-preparation-with-terra" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This section will focus on exploratory analyses with polygon data using the <code>terra</code> package <span class="citation">(<a href="#ref-r-terra">Hijmans 2024</a>)</span>.</p>
+<p>This section will focus on exploratory analyses with polygon data using the <code>terra</code> package <span class="citation">(<a href="#ref-r-terra">9</a>)</span>.</p>
 <div id="import-2" class="section level3 hasAnchor" number="3.5.1">
 <h3><span class="header-section-number">3.5.1</span> Import<a href="chapter-polygon-data.html#import-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now that the contents of the zip files have been saved on your machine and the data files of interest have been identified, import both the wildfire smoke plume coverage data and the United States state boundary data with <code>terra::vect()</code>.</p>
@@ -600,7 +601,7 @@ target="blank">Published with bookdown</a></li>
 <div id="plot-multiple" class="section level3 hasAnchor" number="3.6.1">
 <h3><span class="header-section-number">3.6.1</span> Plot (Multiple)<a href="chapter-polygon-data.html#plot-multiple" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Plot both data sets together in one plot with <code>ggplot2::ggplot()</code>.</p>
-<p>Now that the parameters of interest and coordinate reference systems have been prepared, create a plot with <code>ggplot2::ggplot()</code>. Identifying the data sets to be plotted within the <code>tidyterra::geom_spatvector()</code> arguments informs the function that the data are <code>SpatVector</code> objects <span class="citation">(<a href="#ref-r-tidyterra">Hernangómez 2023</a>)</span>.</p>
+<p>Now that the parameters of interest and coordinate reference systems have been prepared, create a plot with <code>ggplot2::ggplot()</code>. Identifying the data sets to be plotted within the <code>tidyterra::geom_spatvector()</code> arguments informs the function that the data are <code>SpatVector</code> objects <span class="citation">(<a href="#ref-r-tidyterra">10</a>)</span>.</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="chapter-polygon-data.html#cb71-1" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb71-2"><a href="chapter-polygon-data.html#cb71-2" tabindex="-1"></a>  <span class="fu">geom_spatvector</span>(</span>
 <span id="cb71-3"><a href="chapter-polygon-data.html#cb71-3" tabindex="-1"></a>    <span class="at">data =</span> smoke_t,</span>
@@ -763,15 +764,15 @@ target="blank">Published with bookdown</a></li>
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
-<div id="ref-r-tidyterra" class="csl-entry">
-Hernangómez, Diego. 2023. <span>“Using the <span class="nocase">tidyverse</span> with <span class="nocase">terra</span> Objects: The <span class="nocase">tidyterra</span> Package.”</span> <em>Journal of Open Source Software</em> 8 (91): 5751. <a href="https://doi.org/10.21105/joss.05751">https://doi.org/10.21105/joss.05751</a>.
+<div id="refs" class="references csl-bib-body">
+<div id="ref-r-sf-1" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Pebesma, Edzer. 2018. <span>“<span class="nocase">Simple Features for <span>R</span>: Standardized Support for Spatial Vector Data</span>.”</span> <em><span>The R Journal</span></em> 10 (1): 439–46. <a href="https://doi.org/10.32614/RJ-2018-009">https://doi.org/10.32614/RJ-2018-009</a></div>
 </div>
 <div id="ref-r-terra" class="csl-entry">
-Hijmans, Robert J. 2024. <em><span class="nocase">terra</span>: Spatial Data Analysis</em>. R package version 1.7-71. <a href="https://CRAN.R-project.org/package=terra">https://CRAN.R-project.org/package=terra</a>.
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Hijmans, Robert J. 2024. <em><span class="nocase">terra</span>: Spatial Data Analysis</em>. R Package Version 1.7-71. <a href="https://CRAN.R-project.org/package=terra">https://CRAN.R-project.org/package=terra</a></div>
 </div>
-<div id="ref-r-sf-1" class="csl-entry">
-Pebesma, Edzer. 2018. <span>“<span class="nocase">Simple Features for <span>R</span>: Standardized Support for Spatial Vector Data</span>.”</span> <em><span>The R Journal</span></em> 10 (1): 439–46. <a href="https://doi.org/10.32614/RJ-2018-009">https://doi.org/10.32614/RJ-2018-009</a>.
+<div id="ref-r-tidyterra" class="csl-entry">
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">Hernangómez, Diego. 2023. <span>“Using the <span class="nocase">tidyverse</span> with <span class="nocase">terra</span> Objects: The <span class="nocase">tidyterra</span> Package.”</span> <em>Journal of Open Source Software</em> 8 (91): 5751. <a href="https://doi.org/10.21105/joss.05751">https://doi.org/10.21105/joss.05751</a></div>
 </div>
 </div>
             </section>
